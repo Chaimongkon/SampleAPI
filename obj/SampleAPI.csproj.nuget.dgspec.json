@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\New folder (2)\\SampleAPI\\SampleAPI.csproj": {}
+    "D:\\1.Backend Framwork\\SampleAPI\\SampleAPI.csproj": {}
   },
   "projects": {
-    "D:\\New folder (2)\\SampleAPI\\SampleAPI.csproj": {
+    "D:\\1.Backend Framwork\\SampleAPI\\SampleAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New folder (2)\\SampleAPI\\SampleAPI.csproj",
+        "projectUniqueName": "D:\\1.Backend Framwork\\SampleAPI\\SampleAPI.csproj",
         "projectName": "SampleAPI",
-        "projectPath": "D:\\New folder (2)\\SampleAPI\\SampleAPI.csproj",
+        "projectPath": "D:\\1.Backend Framwork\\SampleAPI\\SampleAPI.csproj",
         "packagesPath": "C:\\Users\\Chaimongkon\\.nuget\\packages\\",
-        "outputPath": "D:\\New folder (2)\\SampleAPI\\obj\\",
+        "outputPath": "D:\\1.Backend Framwork\\SampleAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Chaimongkon\\AppData\\Roaming\\NuGet\\NuGet.Config",
