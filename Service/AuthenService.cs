@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SampleAPI.Data;
 using SampleAPI.Dtos;
 using SampleAPI.Models;
@@ -115,6 +116,22 @@ namespace SampleAPI.Service
             };
 
             return userData;
+        }
+        public List<User> GetAllUsers()
+        {
+            var users = _context.Users.ToList();
+
+            return users;
+        }
+        public User GetUser(Int32 id)
+        {
+            var user = _context.Users.Find(id);
+
+            if (user is null)
+                user = new User();
+
+            return user;
+
         }
     }
 }

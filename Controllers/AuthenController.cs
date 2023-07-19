@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SampleAPI.Dtos;
 using SampleAPI.Service;
 
@@ -13,7 +14,23 @@ namespace SampleAPI.Controllers
         {
             _authService = authService;
         }
-
+        [HttpGet("Users")]
+        public ActionResult GetAllUsers()
+        {
+            var GetAll = _authService.GetAllUsers();
+            if (GetAll is null)
+            {
+                return new JsonResult(NotFound());
+            }
+            return new JsonResult(Ok(GetAll));
+        }
+        [HttpGet("Product/{id}")]
+        public ActionResult GetUserById(Int32 id)
+        {
+            var GetName = _authService.GetUser(id);
+            //return Ok(_productService.GetProduct(id));
+            return new JsonResult(Ok(GetName));
+        }
         [HttpPost("Login")]
         public ActionResult<UserLoginDtos> Login([FromBody] LoginDtos dto)
         {
@@ -24,10 +41,10 @@ namespace SampleAPI.Controllers
 
             if (userLoginDto is null)
             {
-                return NotFound(Json("Failed"));
+                return new JsonResult(NotFound());
             }
 
-            return Ok(Json("Success", userLoginDto));
+            return new JsonResult(Ok(userLoginDto));
         }
 
         [HttpPost("Register")]
@@ -37,10 +54,9 @@ namespace SampleAPI.Controllers
 
             if (RegisterDto is null)
             {
-                return BadRequest();
+                return new JsonResult(NotFound());
             }
-
-            return Ok(RegisterDto);
+            return new JsonResult(Ok(RegisterDto));
         }
     }
 }

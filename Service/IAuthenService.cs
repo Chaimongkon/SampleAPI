@@ -1,4 +1,5 @@
 ﻿using SampleAPI.Dtos;
+using SampleAPI.Models;
 
 namespace SampleAPI.Service
 {
@@ -7,5 +8,8 @@ namespace SampleAPI.Service
         UserLoginDtos? Login(LoginDtos dto);
 
         RegisterDtos? Register(RegisterDtos dto);
+
+        User GetUser(Int32 id);
+        List<User> GetAllUsers();
     }
 }

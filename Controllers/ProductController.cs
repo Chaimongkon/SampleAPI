@@ -1,35 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SampleAPI.Models;
 using SampleAPI.Service;
-using System.Collections.Generic;
 
 
 namespace SampleAPI.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
 
-    public class SampleController : ControllerBase
+    [Route("api/[controller]")]
+    [ApiController]
+    [Authorize]
+    public class ProductController : ControllerBase
     {
         private IProductService _productService;
 
-        public SampleController(IProductService productService)
+        public ProductController(IProductService productService)
         {
             _productService = productService;
         }
-
         [HttpGet("Products")]
+
         public ActionResult GetAllProduct()
         {
-            return Ok(_productService.GetAllProducts();
-
+            var GetAll = _productService.GetAllProducts();
+            //return Ok(_productService.GetAllProducts());
+            return new JsonResult(Ok(GetAll));
         }
 
         [HttpGet("Product/{id}")]
         public ActionResult GetProductById(int id)
         {
-            return Ok(_productService.GetProduct(id));
-
+            var GetId = _productService.GetProduct(id);
+            //return Ok(_productService.GetProduct(id));
+            return new JsonResult(Ok(GetId));
         }
 
         [HttpPost("Products")]
@@ -38,7 +42,7 @@ namespace SampleAPI.Controllers
             try
             {
                 _productService.CreateProduct(product);
-                return Ok(product);
+                return new JsonResult(Ok(product));
             }
             catch (Exception ex)
             {
@@ -52,7 +56,7 @@ namespace SampleAPI.Controllers
             {
                 _productService.UpdateProduct(id, product);
 
-                return Ok(product);
+                return new JsonResult(Ok(product));
 
             }
             catch (Exception ex)
@@ -68,7 +72,7 @@ namespace SampleAPI.Controllers
             {
                 _productService.DeleteProduct(id);
 
-                return Ok(id);
+                return new JsonResult(Ok(id)); ;
 
             }
             catch (Exception ex)
